@@ -116,44 +116,45 @@ def cloneOCIS():
     }]
 
 def buildOCIS():
-    return[
+    return [
         {
-        'name': 'generate-ocis',
-        'image': OC_CI_NODEJS,
-        'commands': [
-            'cd /go/src/github.com/owncloud/ocis',
-            'make ci-node-generate',
-        ],
-        "volumes": [{
-            "name": "server",
-            "path": "/srv/app",
-        }, {
-            "name": "gopath",
-            "path": "/go",
-        }, {
-            "name": "configs",
-            "path": "/srv/config",
-        }],
-    },
+            "name": "generate-ocis",
+            "image": OC_CI_NODEJS,
+            "commands": [
+                "cd /go/src/github.com/owncloud/ocis",
+                "make ci-node-generate",
+            ],
+            "volumes": [{
+                "name": "server",
+                "path": "/srv/app",
+            }, {
+                "name": "gopath",
+                "path": "/go",
+            }, {
+                "name": "configs",
+                "path": "/srv/config",
+            }],
+        },
         {
-        "name": "build-ocis",
-        "image": OC_CI_GOLANG,
-        "commands": [
-            "cd $GOPATH/src/github.com/owncloud/ocis/ocis",
-            "make build",
-            "cp bin/ocis /var/www/owncloud",
-        ],
-        "volumes": [{
-            "name": "server",
-            "path": "/srv/app",
-        }, {
-            "name": "gopath",
-            "path": "/go",
-        }, {
-            "name": "configs",
-            "path": "/srv/config",
-        }],
-    }]
+            "name": "build-ocis",
+            "image": OC_CI_GOLANG,
+            "commands": [
+                "cd $GOPATH/src/github.com/owncloud/ocis/ocis",
+                "make build",
+                "cp bin/ocis /var/www/owncloud",
+            ],
+            "volumes": [{
+                "name": "server",
+                "path": "/srv/app",
+            }, {
+                "name": "gopath",
+                "path": "/go",
+            }, {
+                "name": "configs",
+                "path": "/srv/config",
+            }],
+        },
+    ]
 
 def ocisService():
     return [{
