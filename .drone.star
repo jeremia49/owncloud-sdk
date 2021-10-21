@@ -121,9 +121,7 @@ def buildOCIS():
         "name": "generate-ocis",
         "image": OC_CI_NODEJS,
         "commands": [
-            "source .drone.env",
             "cd $GOPATH/src/github.com/owncloud/ocis",
-            "git checkout $OCIS_COMMITID",
             "make ci-node-generate",
         ],
         "volumes": [{
@@ -141,10 +139,7 @@ def buildOCIS():
         "name": "build-ocis",
         "image": OC_CI_GOLANG,
         "commands": [
-            "source .drone.env",
-            "cd $GOPATH/src/github.com/owncloud/ocis",
-            "git checkout $OCIS_COMMITID",
-            "cd ocis",
+            "cd $GOPATH/src/github.com/owncloud/ocis/ocis",
             "make build",
             "cp bin/ocis /var/www/owncloud",
         ],
