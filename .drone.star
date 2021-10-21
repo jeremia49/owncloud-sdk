@@ -118,11 +118,11 @@ def cloneOCIS():
 def buildOCIS():
     return[
         {
-        "name": "generate-ocis",
-        "image": OC_CI_NODEJS,
-        "commands": [
-            "cd $GOPATH/src/github.com/owncloud/ocis",
-            "make ci-node-generate",
+        'name': 'generate-ocis',
+        'image': OC_CI_NODEJS,
+        'commands': [
+            'cd /go/src/github.com/owncloud/ocis',
+            'make ci-node-generate',
         ],
         "volumes": [{
             "name": "server",
